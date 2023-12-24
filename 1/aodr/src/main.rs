@@ -55,18 +55,13 @@ fn day_1_2(filename: &str) -> io::Result<u32> {
         .map(|line| {
             let line = line.unwrap();
 
-            let first_digit = line
-                .as_bytes()
-                .iter()
-                .enumerate()
-                .find_map(|(i, _)| find_number(&line[i..]))
+            let first_digit = (0..line.len())
+                .find_map(|i| find_number(&line[i..]))
                 .unwrap() as u8;
 
-            let last_digit = line
-                .as_bytes()
-                .iter()
-                .enumerate()
-                .find_map(|(i, _)| find_number(&line[line.len() - 1 - i..]))
+            let last_digit = (0..line.len())
+                .rev()
+                .find_map(|i| find_number(&line[i..]))
                 .unwrap() as u8;
 
             u32::from(10 * first_digit + last_digit)
