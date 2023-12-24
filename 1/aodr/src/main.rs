@@ -8,9 +8,9 @@ fn day_1_1(filename: &str) -> io::Result<u32> {
     Ok(reader
         .lines()
         .map(|line| {
+            let line = line.unwrap();
+
             let first_digit = line
-                .as_ref()
-                .unwrap()
                 .as_bytes()
                 .iter()
                 .find(|c| c.is_ascii_digit())
@@ -18,8 +18,6 @@ fn day_1_1(filename: &str) -> io::Result<u32> {
                 .unwrap();
 
             let last_digit = line
-                .as_ref()
-                .unwrap()
                 .as_bytes()
                 .iter()
                 .rfind(|c| c.is_ascii_digit())
